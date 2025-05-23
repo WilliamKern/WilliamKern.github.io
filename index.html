@@ -1,11 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>William Kern | Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("OyWRzYJ0eNUQNEZa6");
+      })();
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1 class="site-title">William Kern</h1>
+        <ul>
+          <li><a href="#about">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li>
+            <a href="assets/William_Kern_Resume.pdf" target="_blank">Resume</a>
+          </li>
+        </ul>
+      </nav>
+      <section class="hero">
+        <h2 class="hero-affiliations">
+          Cardinal Group Companies &bull; University of Oregon
+        </h2>
+        <p class="hero-roles">
+          Leasing Agent &bull; Business Admin Major, Computer IT Minor
+        </p>
+        <p class="hero-subtext">
+          Exploring Real Estate, Property Management & Web Development
+        </p>
+      </section>
+    </header>
+
+    <main>
+      <section id="about" class="about">
+        <h3>About Me</h3>
+        <p>
+          I’m a Business Administration student at the University of Oregon,
+          minoring in Computer Information Technology and Music. With a highly
+          analytical mindset, excellent communication skills, and four years of
+          customer service experience, I thrive in fast-paced environments where
+          I can connect with people and solve problems in real time.
+          <br /><br />
+          Currently, I work as a Part-Time Leasing Agent at Cardinal Group
+          Companies, where I support leasing operations and enhance resident
+          experiences through clear communication and attention to detail. This
+          hands-on role has sparked my growing interest in property management
+          and real estate operations—fields where I can combine business
+          strategy, service, and problem-solving. <br /><br />
+          On campus, I perform with UO’s top gospel ensemble and have experience
+          founding and leading student organizations. Outside of school and
+          work, I enjoy exploring new skills—whether it’s coding, picking up a
+          new instrument, or working on my fitness. I’m driven by curiosity and
+          always looking for opportunities to grow. <br /><br /><br />
+          Let’s connect if you’re in property management!
+        </p>
+      </section>
+
+      <section class="connect">
+        <h3 class="section-title">Where to Find Me</h3>
+        <div class="connect-buttons">
+          <div class="social-card">
+            <a href="https://www.linkedin.com/in/ewilliamkern/" target="_blank">
+              <img
+                src="assets/LinkedInLogo.png"
+                alt="LinkedIn Logo"
+                class="icon"
+              />
+              <span>LinkedIn</span>
+            </a>
+          </div>
+          <div class="social-card">
+            <a href="https://github.com/williamkern" target="_blank">
+              <img src="assets/GitHubLogo.png" alt="GitHub Logo" class="icon" />
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="email-form">
+          <h3 class="section-title">Send Me a Message</h3>
+          <form id="contact-form">
+            <input
+              type="text"
+              name="from_name"
+              placeholder="Your Name"
+              required
+            />
+            <input
+              type="email"
+              name="reply_to"
+              placeholder="Your Email"
+              required
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              rows="5"
+              required
+            ></textarea>
+            <button type="submit" class="btn green">Send Message</button>
+          </form>
+          <p id="form-status" style="margin-top: 10px"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 William Kern</p>
+    </footer>
+
+    <script>
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("form-status");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm("service_md956v2", "template_p7gy04j", this).then(
+          () => {
+            status.textContent = "Message sent successfully!";
+            form.reset();
+          },
+          (err) => {
+            status.textContent = "Failed to send message. Please try again.";
+            console.error("EmailJS error:", err);
+          }
+        );
+      });
+    </script>
+  </body>
 </html>
