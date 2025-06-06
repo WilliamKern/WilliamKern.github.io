@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 8: Node-Fetch | CIT 281</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1 class="site-title">William Kern</h1>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li>
+            <a href="../assets/William_Kern_Resume.pdf" target="_blank"
+              >Résumé</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="project-detail">
+        <h2 class="section-title">Lab 8: Node-Fetch</h2>
+
+        <div class="swiper project-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img
+                src="../assets/projects/lab8/screenshot1.jpg"
+                alt="Lab 8 Screenshot 1"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="../assets/projects/lab8/screenshot2.jpg"
+                alt="Lab 8 Screenshot 2"
+              />
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="project-content">
+          <h3>Overview</h3>
+          <p>
+            Lab 8 introduced working with external APIs using Node-Fetch. I
+            learned how to make HTTP requests to external services, handle
+            responses, and work with JSON data in a Node.js environment.
+          </p>
+
+          <h3>Key Learning Outcomes</h3>
+          <ul>
+            <li>Using Node-Fetch for API requests</li>
+            <li>Handling asynchronous operations with Promises</li>
+            <li>Processing JSON responses</li>
+            <li>Error handling in API requests</li>
+          </ul>
+
+          <div class="project-links">
+            <a
+              href="https://github.com/WilliamKern/cit281-lab08"
+              target="_blank"
+              class="github-link"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 William Kern</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper(".swiper", {
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+  </body>
+</html>
