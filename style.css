@@ -321,40 +321,86 @@ footer {
   padding: 0 1rem;
 }
 
+/* Carousel Styles */
 .project-carousel {
-  margin-bottom: 2rem;
-  border-radius: 8px;
+  margin: 2rem 0;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.project-carousel img {
+.project-carousel .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+}
+
+.project-carousel .swiper-slide img {
   width: 100%;
   height: auto;
   display: block;
+  object-fit: contain;
+}
+
+.project-carousel .swiper-button-next,
+.project-carousel .swiper-button-prev {
+  color: var(--uo-green);
+}
+
+.project-carousel .swiper-pagination-bullet-active {
+  background: var(--uo-green);
+}
+
+/* Project Content */
+.project-content {
+  margin-top: 3rem;
+  padding: 0 1rem;
+}
+
+.project-content h3 {
+  color: var(--uo-green);
+  font-size: 1.6rem;
+  margin: 2rem 0 1rem;
+}
+
+.project-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.project-content ul {
+  margin: 1rem 0 2rem;
+  padding-left: 1.5rem;
+}
+
+.project-content li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
 }
 
 .project-links {
+  margin-top: 3rem;
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.project-links a {
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
 }
 
 .project-links .github-link {
+  display: inline-block;
   background-color: var(--uo-green);
   color: var(--text-light);
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .project-links .github-link:hover {
   background-color: #0f3d2d;
+  transform: translateY(-2px);
 }
 
 /* Course Content Styles */
@@ -368,30 +414,4 @@ footer {
   margin: 2rem 0 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--uo-green);
-}
-
-/* Project Content Styles */
-.project-content {
-  margin-top: 2rem;
-}
-
-.project-content h3 {
-  color: var(--uo-green);
-  font-size: 1.4rem;
-  margin: 1.5rem 0 1rem;
-}
-
-.project-content p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
-}
-
-.project-content ul {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
-}
-
-.project-content li {
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
 }
