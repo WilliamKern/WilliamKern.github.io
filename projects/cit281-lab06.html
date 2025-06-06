@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 6: GitHub and Classes | CIT 281</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1 class="site-title">William Kern</h1>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li>
+            <a href="../assets/William_Kern_Resume.pdf" target="_blank"
+              >Résumé</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="project-detail">
+        <h2 class="section-title">Lab 6: GitHub and Classes</h2>
+
+        <div class="swiper project-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img
+                src="../assets/projects/lab6/screenshot1.jpg"
+                alt="Lab 6 Screenshot 1"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="../assets/projects/lab6/screenshot2.jpg"
+                alt="Lab 6 Screenshot 2"
+              />
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="project-content">
+          <h3>Overview</h3>
+          <p>
+            Lab 6 combined GitHub skills with JavaScript classes. I learned how
+            to create and work with JavaScript classes while using GitHub for
+            version control. This lab emphasized object-oriented programming
+            concepts and Git workflow.
+          </p>
+
+          <h3>Key Learning Outcomes</h3>
+          <ul>
+            <li>Creating and using JavaScript classes</li>
+            <li>Understanding class methods and properties</li>
+            <li>GitHub repository management</li>
+            <li>Working with Git branches and pull requests</li>
+          </ul>
+
+          <div class="project-links">
+            <a
+              href="https://github.com/WilliamKern/cit281-lab06"
+              target="_blank"
+              class="github-link"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 William Kern</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper(".swiper", {
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+  </body>
+</html>

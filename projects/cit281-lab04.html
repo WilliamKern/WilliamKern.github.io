@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 4: Node.js and Fastify | CIT 281</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1 class="site-title">William Kern</h1>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li>
+            <a href="../assets/William_Kern_Resume.pdf" target="_blank"
+              >Résumé</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="project-detail">
+        <h2 class="section-title">Lab 4: Node.js and Fastify</h2>
+
+        <div class="swiper project-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img
+                src="../assets/projects/lab4/screenshot1.jpg"
+                alt="Lab 4 Screenshot 1"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="../assets/projects/lab4/screenshot2.jpg"
+                alt="Lab 4 Screenshot 2"
+              />
+            </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="project-content">
+          <h3>Overview</h3>
+          <p>
+            Lab 4 introduced server-side development with Node.js and the
+            Fastify framework. I learned how to create a basic web server,
+            handle routes, and return different types of responses to client
+            requests.
+          </p>
+
+          <h3>Key Learning Outcomes</h3>
+          <ul>
+            <li>Setting up a Node.js development environment</li>
+            <li>Creating a web server using Fastify</li>
+            <li>Handling different HTTP routes</li>
+            <li>Working with request parameters and query strings</li>
+          </ul>
+
+          <div class="project-links">
+            <a
+              href="https://github.com/WilliamKern/cit281-lab04"
+              target="_blank"
+              class="github-link"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 William Kern</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      const swiper = new Swiper(".swiper", {
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+  </body>
+</html>
