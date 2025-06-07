@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lab 8: Node.js and Promises | CIT 281</title>
+    <title>Project 2: Git and JavaScript | CIT 281</title>
     <link rel="stylesheet" href="../style.css" />
     <link
       rel="stylesheet"
@@ -14,7 +14,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
-
   <body>
     <header>
       <nav>
@@ -33,21 +32,23 @@
 
     <main>
       <section class="project-detail">
-        <h2 class="section-title">Lab 8: Node.js and Promises</h2>
+        <h2 class="section-title">Project 2: Git and JavaScript</h2>
 
         <div class="carousel-container">
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
           <div class="swiper project-carousel">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <div class="placeholder-slide">
-                  <i class="fas fa-code icon"></i>
-                  <p class="message">
-                    This lab focused on Node.js, Express, and Promises
-                  </p>
-                  <p class="submessage">
-                    No visual output was produced during this exercise
-                  </p>
-                </div>
+                <img
+                  src="../assets/photos/projects/project-02/p2-vscode-diff.png"
+                  alt="VS Code Git Diff View"
+                />
+                <p class="image-description">
+                  Using VS Code's Git integration to view code changes and
+                  differences
+                </p>
               </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -60,15 +61,14 @@
           <div class="swiper modal-carousel">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <div class="placeholder-slide">
-                  <i class="fas fa-code icon"></i>
-                  <p class="message">
-                    This lab focused on Node.js, Express, and Promises
-                  </p>
-                  <p class="submessage">
-                    No visual output was produced during this exercise
-                  </p>
-                </div>
+                <img
+                  src="../assets/photos/projects/project-02/p2-vscode-diff.png"
+                  alt="VS Code Git Diff View"
+                />
+                <p class="image-description">
+                  Using VS Code's Git integration to view code changes and
+                  differences
+                </p>
               </div>
             </div>
             <div class="swiper-pagination"></div>
@@ -80,26 +80,25 @@
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Lab 8 focused on building a Node.js server with Express, working
-            with asynchronous JavaScript operations, and integrating with
-            external APIs. The lab covered setting up a server environment,
-            handling API requests, and implementing client-side interactions
-            using modern JavaScript features.
+            Project 2 combined Git version control with JavaScript programming.
+            I developed JavaScript functions while practicing Git workflows,
+            including branching, committing, and using VS Code's Git
+            integration. This project enhanced both my programming skills and
+            version control practices.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>Set up Node.js environment and installed Express</li>
-            <li>Created server routes and handled API requests</li>
-            <li>Worked with Fetch API and Promise chaining</li>
-            <li>Integrated with JSONPlaceholder API</li>
-            <li>Developed client-side code for server interaction</li>
-            <li>Implemented public file serving with Express</li>
+            <li>Created and managed Git repositories</li>
+            <li>Developed JavaScript utility functions</li>
+            <li>Used VS Code's Git integration tools</li>
+            <li>Practiced Git commit workflows</li>
+            <li>Implemented error handling in JavaScript</li>
           </ul>
 
           <div class="project-links">
             <a
-              href="https://github.com/WilliamKern/cit281-lab08"
+              href="https://github.com/WilliamKern/cit281-project2"
               target="_blank"
               class="github-link"
               >View on GitHub</a
@@ -117,7 +116,7 @@
     <script>
       // Initialize main carousel
       const mainSwiper = new Swiper(".project-carousel", {
-        loop: true,
+        loop: false,
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -130,7 +129,7 @@
 
       // Initialize modal carousel
       const modalSwiper = new Swiper(".modal-carousel", {
-        loop: true,
+        loop: false,
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -147,11 +146,11 @@
 
       // Add click event to main carousel slides
       document
-        .querySelectorAll(".project-carousel .swiper-slide")
-        .forEach((slide, index) => {
-          slide.addEventListener("click", () => {
+        .querySelectorAll(".project-carousel .swiper-slide img")
+        .forEach((img, index) => {
+          img.addEventListener("click", () => {
             modal.classList.add("active");
-            modalSwiper.slideTo(mainSwiper.realIndex + 1);
+            modalSwiper.slideTo(0);
           });
         });
 

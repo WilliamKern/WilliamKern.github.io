@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project 3: Fastify and Routes | CIT 281</title>
+    <title>Project 3: Ultimate Coin Tool | CIT 281</title>
     <link rel="stylesheet" href="../style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
 
@@ -29,48 +33,92 @@
 
     <main>
       <section class="project-detail">
-        <h2 class="section-title">Project 3: Fastify and Routes</h2>
+        <h2 class="section-title">Project 3: Ultimate Coin Tool</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project3/screenshot1.jpg"
-                alt="Project 3 Screenshot 1"
-              />
+        <div class="carousel-container">
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="placeholder-slide">
+                  <i class="fas fa-code icon"></i>
+                  <p class="message">
+                    Ultimate Coin Tool: A web application for calculating US
+                    coin combinations and values
+                  </p>
+                  <p class="submessage">
+                    No visual output was produced during this exercise
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project3/screenshot2.jpg"
-                alt="Project 3 Screenshot 2"
-              />
-            </div>
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="placeholder-slide">
+                  <i class="fas fa-code icon"></i>
+                  <p class="message">
+                    Ultimate Coin Tool: A web application for calculating US
+                    coin combinations and values
+                  </p>
+                  <p class="submessage">
+                    No visual output was produced during this exercise
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Project 3 focused on building a web server using Fastify framework.
-            I created multiple routes to handle different types of requests,
-            implemented query parameter processing, and developed a RESTful API
-            structure.
+            For this project, I created the "Ultimate Coin Tool" web application
+            with two basic capabilities: calculating all possible US coin
+            combinations given a specific target number of pennies, and
+            calculating the value in pennies of a specific number of each of the
+            available US coins.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>Fastify server setup and configuration</li>
-            <li>RESTful route implementation</li>
-            <li>Query parameter handling</li>
-            <li>API endpoint design and testing</li>
+            <li>
+              Gained experience interpreting functional descriptions and
+              specifications
+            </li>
+            <li>
+              Used modular programming by breaking the project into manageable
+              components
+            </li>
+            <li>
+              Wrote and executed non-web server Node.js JavaScript code using
+              VSCode
+            </li>
+            <li>Created and used code modules</li>
+            <li>Practiced refactoring using modern JavaScript syntax</li>
+            <li>Worked with JSON data structures</li>
+            <li>
+              Used git version control and created standard Node .gitignore file
+            </li>
+            <li>
+              Wrote and executed web server Node JavaScript code using VSCode
+            </li>
+            <li>Used Express with GET verb, routes, and query parameters</li>
+            <li>Loaded and served "public" files as web pages</li>
           </ul>
 
           <div class="project-links">
             <a
-              href="https://github.com/WilliamKern/cit281-project03"
+              href="https://github.com/WilliamKern/cit281-project3"
               target="_blank"
               class="github-link"
               >View on GitHub</a
@@ -86,8 +134,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
-        loop: true,
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
+        loop: false, // Disabled loop since we only have one slide
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -96,6 +145,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: false, // Disabled loop since we only have one slide
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide")
+        .forEach((slide, index) => {
+          slide.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(0); // Always go to first slide since we only have one
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>

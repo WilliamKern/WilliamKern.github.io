@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project 5: MongoDB and Express | CIT 281</title>
+    <title>Project 5: Game Development | CIT 281</title>
     <link rel="stylesheet" href="../style.css" />
     <link
       rel="stylesheet"
@@ -29,48 +29,118 @@
 
     <main>
       <section class="project-detail">
-        <h2 class="section-title">Project 5: MongoDB and Express</h2>
+        <h2 class="section-title">Project 5: Incremental Game Development</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project5/screenshot1.jpg"
-                alt="Project 5 Screenshot 1"
-              />
-            </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project5/screenshot2.jpg"
-                alt="Project 5 Screenshot 2"
-              />
-            </div>
-          </div>
-          <div class="swiper-button-next"></div>
+        <div class="carousel-container">
           <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/projects/project-05/initial game launch.png"
+                  alt="Initial Game Launch"
+                />
+                <p class="image-description">
+                  Initial game state showing basic clicking mechanics
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/projects/project-05/Level Up - Higher value main click - More valuable autoclicker.png"
+                  alt="Level Up - Auto Clicker Unlocked"
+                />
+                <p class="image-description">
+                  Level up screen showing unlocked auto-clicker and increased
+                  click value
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/projects/project-05/High level - Unlock button active.png"
+                  alt="High Level Gameplay"
+                />
+                <p class="image-description">
+                  Advanced gameplay with high income per second and unlock
+                  button available
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/projects/project-05/initial game launch.png"
+                  alt="Initial Game Launch"
+                />
+                <p class="image-description">
+                  Initial game state showing basic clicking mechanics
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/projects/project-05/Level Up - Higher value main click - More valuable autoclicker.png"
+                  alt="Level Up - Auto Clicker Unlocked"
+                />
+                <p class="image-description">
+                  Level up screen showing unlocked auto-clicker and increased
+                  click value
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/projects/project-05/High level - Unlock button active.png"
+                  alt="High Level Gameplay"
+                />
+                <p class="image-description">
+                  Advanced gameplay with high income per second and unlock
+                  button available
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Project 5 focused on integrating MongoDB with Express to create a
-            full-stack application. I implemented CRUD operations, designed
-            database schemas, and created RESTful endpoints to interact with the
-            database.
+            Project 5 focused on developing an incremental game using JavaScript
+            classes and modern web development techniques. The game features
+            progressive mechanics where players start with basic clicking,
+            unlock auto-clickers, and can achieve increasingly higher levels of
+            automation and income generation.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>MongoDB database integration</li>
-            <li>Express middleware implementation</li>
-            <li>Database schema design</li>
-            <li>CRUD operations with MongoDB</li>
+            <li>
+              Implemented JavaScript classes and object-oriented programming
+              concepts
+            </li>
+            <li>
+              Created interactive game mechanics with event listeners and DOM
+              manipulation
+            </li>
+            <li>Developed progressive gameplay features and upgrade systems</li>
+            <li>Managed game state and player progression</li>
+            <li>Applied CSS styling for game interface elements</li>
+            <li>Implemented save/load functionality for game progress</li>
           </ul>
 
           <div class="project-links">
             <a
-              href="https://github.com/WilliamKern/cit281-project05"
+              href="https://github.com/WilliamKern/cit281-project5"
               target="_blank"
               class="github-link"
               >View on GitHub</a
@@ -86,8 +156,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
-        loop: true,
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
+        loop: true, // Enable loop for multiple images
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -96,6 +167,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: true, // Enable loop for multiple images
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide")
+        .forEach((slide, index) => {
+          slide.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(index); // Go to the same slide that was clicked
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>

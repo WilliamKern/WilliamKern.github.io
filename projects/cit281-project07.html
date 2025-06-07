@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project 7: GitHub Pages Portfolio | CIT 281</title>
+    <title>Project 7: Portfolio Website | CIT 281</title>
     <link rel="stylesheet" href="../style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
 
@@ -29,48 +33,90 @@
 
     <main>
       <section class="project-detail">
-        <h2 class="section-title">Project 7: GitHub Pages Portfolio</h2>
+        <h2 class="section-title">Project 7: Portfolio Website Development</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project7/screenshot1.jpg"
-                alt="Project 7 Screenshot 1"
-              />
+        <div class="carousel-container">
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="placeholder-slide">
+                  <i class="fas fa-code icon"></i>
+                  <p class="message">
+                    This website itself is Project 7! A comprehensive portfolio
+                    showcasing all CIT 281 projects
+                  </p>
+                  <p class="submessage">
+                    You're currently viewing the result of this project
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project7/screenshot2.jpg"
-                alt="Project 7 Screenshot 2"
-              />
-            </div>
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="placeholder-slide">
+                  <i class="fas fa-code icon"></i>
+                  <p class="message">
+                    This website itself is Project 7! A comprehensive portfolio
+                    showcasing all CIT 281 projects
+                  </p>
+                  <p class="submessage">
+                    You're currently viewing the result of this project
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Project 7 involved creating this portfolio website using GitHub
-            Pages. I designed and implemented a responsive website to showcase
-            my CIT 281 coursework, including all labs and projects completed
-            throughout the term.
+            Project 7 involved creating this very portfolio website using GitHub
+            Pages. The goal was to develop a comprehensive showcase of all the
+            projects and labs completed throughout CIT 281. This website serves
+            as both a demonstration of web development skills and a
+            documentation of the learning journey through the course.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>GitHub Pages deployment</li>
-            <li>Responsive web design</li>
-            <li>Portfolio development</li>
-            <li>Project documentation</li>
+            <li>
+              Developed a responsive portfolio website using modern HTML5 and
+              CSS3
+            </li>
+            <li>
+              Implemented dynamic carousels for project screenshots using
+              Swiper.js
+            </li>
+            <li>
+              Created consistent layouts and styling across multiple project
+              pages
+            </li>
+            <li>Utilized GitHub Pages for web hosting and deployment</li>
+            <li>
+              Applied best practices for web accessibility and user experience
+            </li>
+            <li>
+              Organized and documented multiple projects in a cohesive manner
+            </li>
+            <li>Integrated Font Awesome icons and other external resources</li>
+            <li>Implemented responsive navigation and modal image viewing</li>
           </ul>
 
           <div class="project-links">
             <a
-              href="https://github.com/WilliamKern/cit281-project07"
+              href="https://github.com/WilliamKern/WilliamKern.github.io"
               target="_blank"
               class="github-link"
               >View on GitHub</a
@@ -86,8 +132,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
-        loop: true,
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
+        loop: false, // Disabled loop since we only have one slide
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -96,6 +143,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: false, // Disabled loop since we only have one slide
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide")
+        .forEach((slide, index) => {
+          slide.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(0); // Always go to first slide since we only have one
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>

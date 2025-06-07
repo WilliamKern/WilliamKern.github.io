@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lab 6: GitHub and Classes | CIT 281</title>
+    <title>Lab 6: GitHub | CIT 281</title>
     <link rel="stylesheet" href="../style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
 
@@ -29,43 +33,64 @@
 
     <main>
       <section class="project-detail">
-        <h2 class="section-title">Lab 6: GitHub and Classes</h2>
+        <h2 class="section-title">Lab 6: GitHub</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/lab6/screenshot1.jpg"
-                alt="Lab 6 Screenshot 1"
-              />
+        <div class="carousel-container">
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="placeholder-slide">
+                  <i class="fas fa-code icon"></i>
+                  <p class="message">
+                    This lab focused on GitHub Pages and repository management
+                  </p>
+                  <p class="submessage">
+                    No visual output was produced during this exercise
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/lab6/screenshot2.jpg"
-                alt="Lab 6 Screenshot 2"
-              />
-            </div>
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="placeholder-slide">
+                  <i class="fas fa-code icon"></i>
+                  <p class="message">
+                    This lab focused on GitHub Pages and repository management
+                  </p>
+                  <p class="submessage">
+                    No visual output was produced during this exercise
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Lab 6 combined GitHub skills with JavaScript classes. I learned how
-            to create and work with JavaScript classes while using GitHub for
-            version control. This lab emphasized object-oriented programming
-            concepts and Git workflow.
+            Lab 6 focused on working with GitHub Pages and gaining experience
+            with more advanced Git concepts. This included creating and managing
+            repositories, working with branches, and deploying static websites.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>Creating and using JavaScript classes</li>
-            <li>Understanding class methods and properties</li>
-            <li>GitHub repository management</li>
-            <li>Working with Git branches and pull requests</li>
+            <li>Created and configured GitHub Pages repositories</li>
+            <li>Practiced Git clone, push, and pull operations</li>
+            <li>Learned about repository settings and configurations</li>
+            <li>Gained experience with static site deployment</li>
           </ul>
 
           <div class="project-links">
@@ -86,7 +111,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
         loop: true,
         navigation: {
           nextEl: ".swiper-button-next",
@@ -96,6 +122,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide")
+        .forEach((slide, index) => {
+          slide.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(mainSwiper.realIndex + 1);
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>

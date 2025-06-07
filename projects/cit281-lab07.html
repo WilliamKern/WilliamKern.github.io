@@ -9,6 +9,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
 
   <body>
@@ -31,40 +35,59 @@
       <section class="project-detail">
         <h2 class="section-title">Lab 7: GitHub Organization</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/lab7/screenshot1.jpg"
-                alt="Lab 7 Screenshot 1"
-              />
+        <div class="carousel-container">
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-07/lab-07.png"
+                  alt="GitHub Organization Setup"
+                />
+                <p class="image-description">
+                  Setting up and managing GitHub organization repositories
+                </p>
+              </div>
             </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/lab7/screenshot2.jpg"
-                alt="Lab 7 Screenshot 2"
-              />
-            </div>
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-07/lab-07.png"
+                  alt="GitHub Organization Setup"
+                />
+                <p class="image-description">
+                  Setting up and managing GitHub organization repositories
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Lab 7 focused on GitHub Organizations and team collaboration. I
-            learned how to create and manage GitHub Organizations, work with
-            team repositories, and handle repository settings and permissions.
+            Lab 7 focused on working with GitHub Organizations and managing team
+            repositories. I learned how to create and configure organization
+            settings, manage team access, and collaborate effectively within a
+            GitHub Organization structure.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>Creating and managing GitHub Organizations</li>
-            <li>Setting up team repositories and permissions</li>
-            <li>Collaborating with team members through GitHub</li>
-            <li>Managing repository settings and access control</li>
+            <li>Created and configured GitHub Organizations</li>
+            <li>Managed repository permissions and access</li>
+            <li>Set up team structures and roles</li>
+            <li>Practiced collaborative Git workflows</li>
           </ul>
 
           <div class="project-links">
@@ -85,7 +108,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
         loop: true,
         navigation: {
           nextEl: ".swiper-button-next",
@@ -95,6 +119,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide img")
+        .forEach((img, index) => {
+          img.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(mainSwiper.realIndex + 1);
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>

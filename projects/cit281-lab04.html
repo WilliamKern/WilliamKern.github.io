@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lab 4: Node.js and Fastify | CIT 281</title>
+    <title>Lab 4: Node.js and Postman | CIT 281</title>
     <link rel="stylesheet" href="../style.css" />
     <link
       rel="stylesheet"
@@ -29,41 +29,97 @@
 
     <main>
       <section class="project-detail">
-        <h2 class="section-title">Lab 4: Node.js and Fastify</h2>
+        <h2 class="section-title">Lab 4: Node.js and Postman</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/lab4/screenshot1.jpg"
-                alt="Lab 4 Screenshot 1"
-              />
-            </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/lab4/screenshot2.jpg"
-                alt="Lab 4 Screenshot 2"
-              />
-            </div>
-          </div>
-          <div class="swiper-button-next"></div>
+        <div class="carousel-container">
           <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-04/Screenshot 2025-06-06 144642.png"
+                  alt="Initial Server Setup"
+                />
+                <p class="image-description">
+                  Setting up the Postman server and configuring basic routes
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-04/guestWelcomeRoute.png"
+                  alt="Guest Welcome Page"
+                />
+                <p class="image-description">
+                  Default welcome message for guest users
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-04/personalizedWelcomeRoute.png"
+                  alt="Personalized Welcome"
+                />
+                <p class="image-description">
+                  Personalized welcome message using query parameters
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-04/postman-get.png"
+                  alt="GET Request in Postman"
+                />
+                <p class="image-description">
+                  Testing GET request functionality in Postman
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-04/postman-post.png"
+                  alt="POST Request in Postman"
+                />
+                <p class="image-description">
+                  Testing POST request functionality in Postman
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-04/postman-delete.png"
+                  alt="DELETE Request in Postman"
+                />
+                <p class="image-description">
+                  Testing DELETE request functionality in Postman
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
             Lab 4 introduced server-side development with Node.js and the
-            Fastify framework. I learned how to create a basic web server,
-            handle routes, and return different types of responses to client
-            requests.
+            Postman tool. I learned how to create a basic web server, handle
+            routes, and return different types of responses to client requests.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
             <li>Setting up a Node.js development environment</li>
-            <li>Creating a web server using Fastify</li>
+            <li>Testing APIs using Postman</li>
             <li>Handling different HTTP routes</li>
             <li>Working with request parameters and query strings</li>
           </ul>
@@ -86,7 +142,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
         loop: true,
         navigation: {
           nextEl: ".swiper-button-next",
@@ -96,6 +153,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide img")
+        .forEach((img, index) => {
+          img.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(mainSwiper.realIndex + 1);
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>

@@ -31,40 +31,117 @@
       <section class="project-detail">
         <h2 class="section-title">Lab 5: Postman</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/lab5/screenshot1.jpg"
-                alt="Lab 5 Screenshot 1"
-              />
-            </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/lab5/screenshot2.jpg"
-                alt="Lab 5 Screenshot 2"
-              />
-            </div>
-          </div>
-          <div class="swiper-button-next"></div>
+        <div class="carousel-container">
           <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-05/AllStudents.png"
+                  alt="All Students Route"
+                />
+                <p class="image-description">
+                  GET route to retrieve all students from the database
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-05/SingleStudent.png"
+                  alt="Single Student Route"
+                />
+                <p class="image-description">
+                  GET route with parameter destructuring to fetch a specific
+                  student
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-05/StudentPost.png"
+                  alt="Student POST Route"
+                />
+                <p class="image-description">
+                  POST route implementation for adding new students
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-05/Unmatched.png"
+                  alt="Unmatched Route"
+                />
+                <p class="image-description">
+                  Error handling for unmatched routes
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-05/AllStudents.png"
+                  alt="All Students Route"
+                />
+                <p class="image-description">
+                  GET route to retrieve all students from the database
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-05/SingleStudent.png"
+                  alt="Single Student Route"
+                />
+                <p class="image-description">
+                  GET route with parameter destructuring to fetch a specific
+                  student
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-05/StudentPost.png"
+                  alt="Student POST Route"
+                />
+                <p class="image-description">
+                  POST route implementation for adding new students
+                </p>
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/labs/lab-05/Unmatched.png"
+                  alt="Unmatched Route"
+                />
+                <p class="image-description">
+                  Error handling for unmatched routes
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Lab 5 focused on using Postman to test and debug APIs. I learned how
-            to send different types of HTTP requests, work with request
-            parameters, and analyze API responses effectively.
+            Lab 5 focused on using Postman to test and validate different types
+            of API endpoints. I practiced working with various HTTP methods and
+            learned how to handle different response scenarios.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>Using Postman for API testing</li>
-            <li>Understanding HTTP methods (GET, POST, PUT, DELETE)</li>
-            <li>Working with request parameters and headers</li>
-            <li>Analyzing API responses and status codes</li>
+            <li>Testing GET and POST requests</li>
+            <li>Working with request parameters</li>
+            <li>Error handling in APIs</li>
+            <li>API endpoint validation</li>
           </ul>
 
           <div class="project-links">
@@ -85,7 +162,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
         loop: true,
         navigation: {
           nextEl: ".swiper-button-next",
@@ -95,6 +173,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide img")
+        .forEach((img, index) => {
+          img.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(mainSwiper.realIndex + 1);
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>

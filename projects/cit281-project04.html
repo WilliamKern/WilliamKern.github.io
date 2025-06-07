@@ -3,11 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project 4: REST API and Testing | CIT 281</title>
+    <title>Project 4: REST API | CIT 281</title>
     <link rel="stylesheet" href="../style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
   </head>
 
@@ -29,47 +33,88 @@
 
     <main>
       <section class="project-detail">
-        <h2 class="section-title">Project 4: REST API and Testing</h2>
+        <h2 class="section-title">Project 4: REST API Development</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project4/screenshot1.jpg"
-                alt="Project 4 Screenshot 1"
-              />
+        <div class="carousel-container">
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="placeholder-slide">
+                  <i class="fas fa-code icon"></i>
+                  <p class="message">
+                    REST API: Building a Question/Answer Server with Node.js and
+                    Express
+                  </p>
+                  <p class="submessage">
+                    No visual output was produced during this exercise
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project4/screenshot2.jpg"
-                alt="Project 4 Screenshot 2"
-              />
-            </div>
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="placeholder-slide">
+                  <i class="fas fa-server icon"></i>
+                  <p class="message">
+                    REST API: Building a Question/Answer Server with Node.js and
+                    Express
+                  </p>
+                  <p class="submessage">
+                    No visual output was produced during this exercise
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Project 4 involved building and testing a REST API. I developed a
-            complete API with multiple endpoints, implemented proper error
-            handling, and created comprehensive tests to ensure functionality.
+            Project 04 centered around building a REST API using Node.js and
+            Express. I created a p4-module.js file that stores and manages an
+            array of question/answer objects, then used an Express server to
+            provide endpoints for retrieving, adding, and deleting questions via
+            HTTP requests. This project helped solidify my understanding of REST
+            architecture and how servers interact with data modules.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>REST API design principles</li>
-            <li>API testing methodologies</li>
-            <li>Error handling and validation</li>
-            <li>Documentation of API endpoints</li>
+            <li>Designed and implemented a simple REST API</li>
+            <li>
+              Created and exported multiple data-handling functions from a
+              module file
+            </li>
+            <li>
+              Used Express routing to create GET, POST, and DELETE endpoints
+            </li>
+            <li>
+              Parsed URL parameters and request bodies with express.json()
+            </li>
+            <li>
+              Sent structured responses using res.json() and proper status codes
+            </li>
+            <li>Organized routes and validated request data</li>
+            <li>Structured modular, testable server code</li>
+            <li>Separated data logic from routing concerns</li>
+            <li>Handled missing or invalid input appropriately</li>
           </ul>
 
           <div class="project-links">
             <a
-              href="https://github.com/WilliamKern/cit281-project04"
+              href="https://github.com/WilliamKern/cit281-project4"
               target="_blank"
               class="github-link"
               >View on GitHub</a
@@ -85,8 +130,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
-        loop: true,
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
+        loop: false, // Disabled loop since we only have one slide
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -95,6 +141,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: false, // Disabled loop since we only have one slide
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide")
+        .forEach((slide, index) => {
+          slide.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(0); // Always go to first slide since we only have one
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>

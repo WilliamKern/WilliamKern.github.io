@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project 6: Classes and Inheritance | CIT 281</title>
+    <title>Project 6: Task Management Application | CIT 281</title>
     <link rel="stylesheet" href="../style.css" />
     <link
       rel="stylesheet"
@@ -29,48 +29,91 @@
 
     <main>
       <section class="project-detail">
-        <h2 class="section-title">Project 6: Classes and Inheritance</h2>
+        <h2 class="section-title">Project 6: Task Management Application</h2>
 
-        <div class="swiper project-carousel">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project6/screenshot1.jpg"
-                alt="Project 6 Screenshot 1"
-              />
+        <div class="carousel-container">
+          <div class="swiper project-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/projects/project-06/Screenshot154726.png"
+                  alt="Todo List Application Interface"
+                />
+                <p class="image-description">
+                  Preview of the task management application interface with CRUD
+                  functionality
+                </p>
+              </div>
             </div>
-            <div class="swiper-slide">
-              <img
-                src="../assets/projects/project6/screenshot2.jpg"
-                alt="Project 6 Screenshot 2"
-              />
-            </div>
+            <div class="swiper-pagination"></div>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Modal Carousel -->
+        <div class="swiper-slide-modal">
+          <button class="modal-close">&times;</button>
+          <div class="swiper modal-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="../assets/photos/projects/project-06/Todo List - Task Management Application.png"
+                  alt="Todo List Application Interface"
+                />
+                <p class="image-description">
+                  Preview of the task management application interface with CRUD
+                  functionality
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         </div>
 
         <div class="project-content">
           <h3>Overview</h3>
           <p>
-            Project 6 explored object-oriented programming concepts in
-            JavaScript. I implemented class hierarchies, inheritance
-            relationships, and practiced working with class methods and
-            properties.
+            Project 06 focused on developing a full CRUD (Create, Read, Update,
+            Delete) web application using Express and modular JavaScript
+            classes. I built a Task class and a TaskList manager, then created
+            an Express server with routes that allow tasks to be created,
+            retrieved, updated, or deleted via API requests. I also added a
+            front-end interface to interact with these features, using fetch()
+            and dynamic HTML rendering.
           </p>
 
           <h3>Key Learning Outcomes</h3>
           <ul>
-            <li>JavaScript classes and objects</li>
-            <li>Inheritance and polymorphism</li>
-            <li>Class methods and properties</li>
-            <li>Object-oriented design patterns</li>
+            <li>
+              Created JavaScript classes to represent individual tasks and a
+              manager class to store them
+            </li>
+            <li>
+              Built RESTful API routes using Express for GET, POST, PUT, and
+              DELETE operations
+            </li>
+            <li>
+              Stored and updated task data in memory with proper JSON responses
+            </li>
+            <li>
+              Connected the frontend with the server using fetch() and dynamic
+              DOM updates
+            </li>
+            <li>
+              Handled edge cases and error messaging for invalid input or task
+              IDs
+            </li>
+            <li>
+              Organized server code and managed class-based data structures
+            </li>
+            <li>Implemented asynchronous request handling</li>
+            <li>Designed and built a full-stack web application</li>
           </ul>
 
           <div class="project-links">
             <a
-              href="https://github.com/WilliamKern/cit281-project06"
+              href="https://github.com/WilliamKern/cit281-project6"
               target="_blank"
               class="github-link"
               >View on GitHub</a
@@ -86,8 +129,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      const swiper = new Swiper(".swiper", {
-        loop: true,
+      // Initialize main carousel
+      const mainSwiper = new Swiper(".project-carousel", {
+        loop: false, // Disabled loop since we only have one slide
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
@@ -96,6 +140,52 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+      });
+
+      // Initialize modal carousel
+      const modalSwiper = new Swiper(".modal-carousel", {
+        loop: false, // Disabled loop since we only have one slide
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+
+      // Get modal elements
+      const modal = document.querySelector(".swiper-slide-modal");
+      const closeButton = document.querySelector(".modal-close");
+
+      // Add click event to main carousel slides
+      document
+        .querySelectorAll(".project-carousel .swiper-slide")
+        .forEach((slide, index) => {
+          slide.addEventListener("click", () => {
+            modal.classList.add("active");
+            modalSwiper.slideTo(0); // Always go to first slide since we only have one
+          });
+        });
+
+      // Close modal when clicking close button
+      closeButton.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      // Close modal when clicking outside the carousel
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      // Handle escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+        }
       });
     </script>
   </body>
